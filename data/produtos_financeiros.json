@@ -1,0 +1,42 @@
+[
+  {
+    "nome": "Tesouro Selic",
+    "categoria": "renda_fixa",
+    "risco": "baixo",
+    "rentabilidade": "100% da Selic",
+    "aporte_minimo": 30.00,
+    "indicado_para": "Reserva de emergência e iniciantes"
+  },
+  {
+    "nome": "CDB Liquidez Diária Bradesco",
+    "categoria": "renda_fixa",
+    "risco": "baixo",
+    "rentabilidade": "102% do CDI",
+    "aporte_minimo": 100.00,
+    "indicado_para": "Reserva de emergência e perfil conservador"
+  },
+  {
+    "nome": "LCI Bradesco",
+    "categoria": "renda_fixa",
+    "risco": "baixo",
+    "rentabilidade": "90% do CDI (Isento de IR)",
+    "aporte_minimo": 1000.00,
+    "indicado_para": "Investidores conservadores a moderados com prazo acima de 90 dias"
+  },
+  {
+    "nome": "Fundo Multimercado Bradesco",
+    "categoria": "multimercado",
+    "risco": "medio",
+    "rentabilidade": "115% do CDI (estimado)",
+    "aporte_minimo": 500.00,
+    "indicado_para": "Perfil moderado a arrojado buscando diversificação"
+  },
+  {
+    "nome": "Ações Bradesco (BBDC4)",
+    "categoria": "renda_variavel",
+    "risco": "alto",
+    "rentabilidade": "Variável (dividendos + valorização)",
+    "aporte_minimo": 15.00,
+    "indicado_para": "Perfil arrojado a longo prazo"
+  }
+]
