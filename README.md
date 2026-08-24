@@ -2,7 +2,7 @@
 
 Projeto desenvolvido para o Lab **Construa Seu Assistente Virtual Com
 Inteligência Artificial**, da DIO. A Lary ajuda uma pessoa iniciante a entender
-um orçamento fictício, estimar uma referência de reserva de emergência e aprender
+seu orçamento, estimar uma referência de reserva de emergência e aprender
 conceitos básicos de investimento sem inventar taxas ou ofertas.
 
 > Projeto educacional, sem vínculo ou integração oficial com o Bradesco. Não
@@ -43,8 +43,12 @@ Quanto rende um CDB do Bradesco hoje?
 A resposta deve usar os arquivos da pasta `data/`, respeitar as restrições do
 agente e admitir quando não houver informação suficiente.
 
+Não existe personagem ou situação financeira pronta. A Lary começa perguntando
+somente o necessário e mantém na sessão as informações que a pessoa fornecer. Os
+dados da conversa não são gravados automaticamente nos arquivos do projeto.
+
 Essa é a mesma lógica de engenharia de contexto usada pelo agente Edu do
-repositório de referência: instruções + dados do cliente + base de conhecimento +
+repositório de referência: instruções + dados fornecidos + base de conhecimento +
 resposta educacional. A aplicação mantém `AGENTS.md` como fonte principal das
 regras e usa o Ollama local para gerar a resposta.
 
@@ -94,7 +98,7 @@ Lary-IA-DIO/
 
 ## Dados e fontes
 
-Nome, perfil, patrimônio, transações e atendimentos são sintéticos. Os conceitos
+Os arquivos de perfil, transações e atendimentos começam vazios. Os conceitos
 financeiros foram revisados em 24/08/2026 usando páginas oficiais do
 [Tesouro Direto](https://www.tesourodireto.com.br/sobre-o-tesouro/regras-e-regulamento),
 [FGC](https://www.fgc.org.br/garantia-fgc/sobre-a-garantia-fgc) e

@@ -21,7 +21,7 @@ flowchart LR
     S --> O[Ollama local]
     O --> A[AGENTS.md]
     A --> K[Conhecimento em Markdown]
-    K --> D[Dados fictícios em JSON e CSV]
+    K --> D[Estruturas vazias em JSON e CSV]
     D --> R[Resposta com limites explícitos]
 ```
 
@@ -31,7 +31,8 @@ modelo responde pela interface do Streamlit sem adicionar fatos ausentes.
 
 ## Segurança e anti-alucinação
 
-- Dados pessoais e transações são identificados como fictícios.
+- O projeto começa sem dados pessoais ou transações predefinidas.
+- Informações fornecidas na conversa permanecem somente na sessão.
 - Nenhuma taxa comercial é apresentada como vigente.
 - O agente não acessa contas, movimenta dinheiro ou coleta credenciais.
 - A tolerância a risco e a reserva limitam as alternativas explicadas.

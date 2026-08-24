@@ -1,15 +1,16 @@
 # 2. Base de conhecimento
 
-## Dados sintéticos
+## Contexto pessoal progressivo
 
 | Arquivo | Uso |
 |---|---|
-| `data/perfil_investidor.json` | Perfil, objetivo e tolerância a risco do personagem |
-| `data/transacoes.csv` | Entradas e saídas do cenário |
-| `data/historico_atendimento.csv` | Contexto fictício de atendimentos anteriores |
+| `data/perfil_investidor.json` | Estrutura vazia dos dados que podem ser informados |
+| `data/transacoes.csv` | Cabeçalho para transações, sem lançamentos predefinidos |
+| `data/historico_atendimento.csv` | Cabeçalho para atendimentos, sem histórico predefinido |
 
-O nome “João Silva”, sua profissão, patrimônio e movimentações são fictícios.
-Nenhum dado representa uma pessoa real.
+O projeto não contém personagem. Na conversa, a Lary começa sem conhecer renda,
+despesas, patrimônio, objetivo ou perfil. Ela usa temporariamente somente o que a
+pessoa fornecer e não grava essas informações nos arquivos.
 
 ## Informações verificáveis
 

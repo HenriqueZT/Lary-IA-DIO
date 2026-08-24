@@ -25,7 +25,7 @@ class LaryAppTests(unittest.TestCase):
         self.assertFalse(app.exception)
         self.assertEqual(len(app.chat_input), 1)
 
-    def test_context_and_rules_reach_model(self):
+    def test_empty_context_and_rules_reach_model(self):
         with patch("requests.post", return_value=FakeResponse()) as request:
             app = AppTest.from_file(APP_FILE).run(timeout=30)
             app.chat_input[0].set_value("Quanto falta para a reserva?").run(timeout=30)
@@ -34,11 +34,22 @@ class LaryAppTests(unittest.TestCase):
         payload = request.call_args.kwargs["json"]
         prompt = payload["prompt"]
         self.assertEqual(payload["model"], "gpt-oss:20b")
-        self.assertIn("13679.4", prompt)
-        self.assertIn("3679.4", prompt)
+        self.assertIn("Aguardando informações fornecidas pela pessoa", prompt)
+        self.assertIn('"renda_mensal": null', prompt)
+        self.assertIn('"perfil_investidor": null', prompt)
         self.assertIn("não recomende", prompt)
-        self.assertIn("dados do cliente são fictícios", prompt)
+        self.assertIn("comece sem presumir dados", prompt)
         self.assertTrue(any(item.value == "Resposta educacional de teste." for item in app.markdown))
+
+    def test_conversation_is_sent_as_temporary_context(self):
+        with patch("requests.post", return_value=FakeResponse()) as request:
+            app = AppTest.from_file(APP_FILE).run(timeout=30)
+            app.chat_input[0].set_value("Minha renda mensal é R$ 3.000").run(timeout=30)
+            app.chat_input[0].set_value("Como posso organizar meu orçamento?").run(timeout=30)
+
+        prompt = request.call_args.kwargs["json"]["prompt"]
+        self.assertIn("Minha renda mensal é R$ 3.000", prompt)
+        self.assertIn("Como posso organizar meu orçamento?", prompt)
 
     def test_missing_ollama_has_friendly_message(self):
         with patch("requests.post", side_effect=requests.ConnectionError):

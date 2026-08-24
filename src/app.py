@@ -37,18 +37,23 @@ def load_context() -> str:
     transactions = read_csv("transacoes.csv")
     history = read_csv("historico_atendimento.csv")
 
-    income = sum(float(item["valor"]) for item in transactions if item["tipo"] == "entrada")
-    expenses = sum(float(item["valor"]) for item in transactions if item["tipo"] == "saida")
-    reserve_target = expenses * 6
-    reserve_gap = max(reserve_target - float(profile["reserva_emergencia_atual"]), 0)
-
-    derived = {
-        "entradas": round(income, 2),
-        "saidas": round(expenses, 2),
-        "saldo": round(income - expenses, 2),
-        "referencia_reserva_6_meses": round(reserve_target, 2),
-        "valor_para_atingir_referencia": round(reserve_gap, 2),
-    }
+    derived = {"status": "Aguardando informações fornecidas pela pessoa."}
+    if transactions:
+        income = sum(float(item["valor"]) for item in transactions if item["tipo"] == "entrada")
+        expenses = sum(float(item["valor"]) for item in transactions if item["tipo"] == "saida")
+        reserve_target = expenses * 6
+        reserve_current = profile.get("reserva_emergencia_atual")
+        derived = {
+            "entradas": round(income, 2),
+            "saidas": round(expenses, 2),
+            "saldo": round(income - expenses, 2),
+            "referencia_reserva_6_meses": round(reserve_target, 2),
+            "valor_para_atingir_referencia": (
+                round(max(reserve_target - float(reserve_current), 0), 2)
+                if reserve_current is not None
+                else None
+            ),
+        }
 
     return "\n\n".join(
         [
@@ -56,9 +61,9 @@ def load_context() -> str:
             "PERSONA:\n" + read_text(ROOT / "agent" / "persona.md"),
             "CONCEITOS:\n" + read_text(ROOT / "agent" / "knowledge" / "conceitos.md"),
             "REGRAS DE LEITURA:\n" + read_text(ROOT / "agent" / "knowledge" / "cliente.md"),
-            "PERFIL FICTÍCIO:\n" + json.dumps(profile, ensure_ascii=False, indent=2),
-            "TRANSAÇÕES FICTÍCIAS:\n" + json.dumps(transactions, ensure_ascii=False, indent=2),
-            "ATENDIMENTOS FICTÍCIOS:\n" + json.dumps(history, ensure_ascii=False, indent=2),
+            "PERFIL INICIAL (PODE ESTAR VAZIO):\n" + json.dumps(profile, ensure_ascii=False, indent=2),
+            "TRANSAÇÕES INICIAIS (PODEM ESTAR VAZIAS):\n" + json.dumps(transactions, ensure_ascii=False, indent=2),
+            "ATENDIMENTOS INICIAIS (PODEM ESTAR VAZIOS):\n" + json.dumps(history, ensure_ascii=False, indent=2),
             "CÁLCULOS DERIVADOS:\n" + json.dumps(derived, ensure_ascii=False, indent=2),
             "CATÁLOGO EDUCACIONAL:\n" + json.dumps(products, ensure_ascii=False, indent=2),
             "FONTES OFICIAIS:\n" + json.dumps(sources, ensure_ascii=False, indent=2),
@@ -66,20 +71,26 @@ def load_context() -> str:
     )
 
 
-def ask_lary(question: str) -> str:
+def ask_lary(question: str, conversation: list[dict]) -> str:
     prompt = f"""
 Use exclusivamente o contexto abaixo para responder como Lary.
 
 Regras obrigatórias:
 - ensine, mas não recomende a compra de produto específico;
 - não invente taxas, ofertas, transações ou informações ausentes;
-- deixe claro que os dados do cliente são fictícios;
+- comece sem presumir dados sobre a pessoa;
+- use como contexto pessoal apenas o que ela informou no histórico da conversa;
+- quando faltar um dado necessário, faça uma pergunta curta por vez;
+- não transforme exemplos hipotéticos em dados reais da pessoa;
 - se faltar informação, diga que não possui informação suficiente;
 - não solicite nem repita senhas, tokens, CPF ou dados bancários;
 - responda em português do Brasil, de forma simples e em até três parágrafos.
 
 CONTEXTO:
 {load_context()}
+
+HISTÓRICO DESTA CONVERSA:
+{json.dumps(conversation, ensure_ascii=False, indent=2)}
 
 PERGUNTA:
 {question}
@@ -99,7 +110,7 @@ PERGUNTA:
 
 st.set_page_config(page_title="Lary", page_icon="💰")
 st.title("💰 Lary — Mentora Financeira Educacional")
-st.caption("Protótipo com dados fictícios. Não realiza operações nem recomenda produtos específicos.")
+st.caption("Seus dados não são predefinidos nem gravados. A Lary não realiza operações ou recomenda produtos específicos.")
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -116,7 +127,7 @@ if question := st.chat_input("Digite sua dúvida sobre finanças"):
     with st.chat_message("assistant"):
         try:
             with st.spinner("Lary está analisando os dados..."):
-                answer = ask_lary(question)
+                answer = ask_lary(question, st.session_state.messages[:-1])
         except requests.RequestException:
             answer = (
                 "Não consegui acessar o Ollama local. Confirme se ele está em execução "

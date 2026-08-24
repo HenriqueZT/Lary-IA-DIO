@@ -7,7 +7,7 @@ pergunta → Streamlit → Ollama local → regras da Lary + base de dados → r
 ```
 
 O programa carrega `AGENTS.md`, a persona, a base de conhecimento, os dados
-fictícios e as fontes oficiais. O modelo recebe instruções explícitas para não
+fornecidos durante a conversa e as fontes oficiais. O modelo recebe instruções explícitas para não
 inventar informações nem recomendar produtos específicos.
 
 ## Execução

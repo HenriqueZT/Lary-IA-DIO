@@ -49,7 +49,7 @@
       "liquidez": "depende da negociação no mercado",
       "fgc": false,
       "rentabilidade": "variável e não garantida",
-      "uso_educacional": "incompatível com este cliente enquanto aceita_risco=false e a reserva estiver incompleta",
+      "uso_educacional": "explicar riscos somente após conhecer objetivo, prazo e tolerância a risco da pessoa",
       "fonte": "https://www.b3.com.br/pt_br/noticias/suitability.htm"
     }
   ]
