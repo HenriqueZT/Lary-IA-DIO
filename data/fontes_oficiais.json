@@ -1,0 +1,25 @@
+{
+  "verificado_em": "2026-08-24",
+  "fontes": [
+    {
+      "instituicao": "Tesouro Direto",
+      "assunto": "Regras, liquidez e resgate de títulos públicos",
+      "url": "https://www.tesourodireto.com.br/sobre-o-tesouro/regras-e-regulamento"
+    },
+    {
+      "instituicao": "Fundo Garantidor de Créditos (FGC)",
+      "assunto": "Produtos cobertos, exclusões e limites da garantia",
+      "url": "https://www.fgc.org.br/garantia-fgc/sobre-a-garantia-fgc"
+    },
+    {
+      "instituicao": "Fundo Garantidor de Créditos (FGC)",
+      "assunto": "Perguntas frequentes sobre a garantia",
+      "url": "https://www.fgc.org.br/faq"
+    },
+    {
+      "instituicao": "B3",
+      "assunto": "Suitability e adequação ao perfil de risco",
+      "url": "https://www.b3.com.br/pt_br/noticias/suitability.htm"
+    }
+  ]
+}

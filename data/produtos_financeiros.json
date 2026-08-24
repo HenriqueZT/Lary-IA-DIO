@@ -1,42 +1,56 @@
-[
-  {
-    "nome": "Tesouro Selic",
-    "categoria": "renda_fixa",
-    "risco": "baixo",
-    "rentabilidade": "100% da Selic",
-    "aporte_minimo": 30.00,
-    "indicado_para": "Reserva de emergência e iniciantes"
-  },
-  {
-    "nome": "CDB Liquidez Diária Bradesco",
-    "categoria": "renda_fixa",
-    "risco": "baixo",
-    "rentabilidade": "102% do CDI",
-    "aporte_minimo": 100.00,
-    "indicado_para": "Reserva de emergência e perfil conservador"
-  },
-  {
-    "nome": "LCI Bradesco",
-    "categoria": "renda_fixa",
-    "risco": "baixo",
-    "rentabilidade": "90% do CDI (Isento de IR)",
-    "aporte_minimo": 1000.00,
-    "indicado_para": "Investidores conservadores a moderados com prazo acima de 90 dias"
-  },
-  {
-    "nome": "Fundo Multimercado Bradesco",
-    "categoria": "multimercado",
-    "risco": "medio",
-    "rentabilidade": "115% do CDI (estimado)",
-    "aporte_minimo": 500.00,
-    "indicado_para": "Perfil moderado a arrojado buscando diversificação"
-  },
-  {
-    "nome": "Ações Bradesco (BBDC4)",
-    "categoria": "renda_variavel",
-    "risco": "alto",
-    "rentabilidade": "Variável (dividendos + valorização)",
-    "aporte_minimo": 15.00,
-    "indicado_para": "Perfil arrojado a longo prazo"
-  }
-]
+{
+  "natureza": "Catálogo educacional; não representa oferta, recomendação ou disponibilidade no Bradesco.",
+  "verificado_em": "2026-08-24",
+  "itens": [
+    {
+      "nome": "Tesouro Selic",
+      "categoria": "título público federal pós-fixado",
+      "risco": "baixo risco de crédito; sujeito a preço de mercado no resgate antecipado",
+      "liquidez": "liquidez diária conforme regras e horários do Tesouro Direto",
+      "fgc": false,
+      "rentabilidade": "não fixada nesta base; consultar preço e taxa vigentes no Tesouro Direto",
+      "uso_educacional": "alternativa a pesquisar para objetivos de liquidez e reserva",
+      "fonte": "https://www.tesourodireto.com.br/sobre-o-tesouro/regras-e-regulamento"
+    },
+    {
+      "nome": "CDB com liquidez diária",
+      "categoria": "depósito a prazo emitido por instituição financeira",
+      "risco": "risco de crédito da instituição emissora",
+      "liquidez": "depende do contrato; confirmar carência e prazo de resgate",
+      "fgc": true,
+      "rentabilidade": "depende da oferta e do contrato; não há percentual presumido",
+      "uso_educacional": "categoria a pesquisar para reserva, após verificar liquidez, tributação e emissor",
+      "fonte": "https://www.fgc.org.br/garantia-fgc/sobre-a-garantia-fgc"
+    },
+    {
+      "nome": "LCI ou LCA",
+      "categoria": "título de renda fixa emitido por instituição financeira",
+      "risco": "risco de crédito da instituição emissora",
+      "liquidez": "pode haver carência; confirmar no contrato",
+      "fgc": true,
+      "rentabilidade": "depende da oferta e do contrato; não há percentual presumido",
+      "uso_educacional": "categoria a pesquisar para objetivos compatíveis com o prazo contratado",
+      "fonte": "https://www.fgc.org.br/garantia-fgc/sobre-a-garantia-fgc"
+    },
+    {
+      "nome": "Fundos de investimento",
+      "categoria": "condomínio de recursos com política definida em regulamento",
+      "risco": "varia conforme a política e os ativos da carteira",
+      "liquidez": "varia conforme o regulamento",
+      "fgc": false,
+      "rentabilidade": "não garantida",
+      "uso_educacional": "somente após analisar objetivo, perfil, regulamento, custos e riscos",
+      "fonte": "https://www.fgc.org.br/faq"
+    },
+    {
+      "nome": "Ações",
+      "categoria": "renda variável",
+      "risco": "oscilação de preço e possibilidade de perda",
+      "liquidez": "depende da negociação no mercado",
+      "fgc": false,
+      "rentabilidade": "variável e não garantida",
+      "uso_educacional": "incompatível com este cliente enquanto aceita_risco=false e a reserva estiver incompleta",
+      "fonte": "https://www.b3.com.br/pt_br/noticias/suitability.htm"
+    }
+  ]
+}

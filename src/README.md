@@ -1,15 +1,37 @@
-# Código da Aplicação
+# Aplicação da Lary
 
-Esta pasta é reservada para conter o código do seu agente financeiro, caso você decida implementar uma interface funcional ou integrar a Lary com APIs reais de modelos de linguagem (como Gemini ou OpenAI) em uma fase futura.
+A interface segue um fluxo simples:
 
-## Estrutura Sugerida para Implementação
-
-Caso opte por codificar a Lary no futuro, a estrutura recomendada é:
-
+```text
+pergunta → Streamlit → Ollama local → regras da Lary + base de dados → resposta
 ```
-src/
-├── app.py              # Interface visual do chatbot (ex: Streamlit ou Gradio)
-├── agente.py           # Lógica do agente (integração de dados e prompts com LLMs)
-├── config.py           # Configurações de chaves de API e variáveis de ambiente
-└── requirements.txt    # Lista de dependências Python (bibliotecas necessárias)
+
+O programa carrega `AGENTS.md`, a persona, a base de conhecimento, os dados
+fictícios e as fontes oficiais. O modelo recebe instruções explícitas para não
+inventar informações nem recomendar produtos específicos.
+
+## Execução
+
+Na raiz do projeto:
+
+```bash
+pip install -r requirements.txt
+ollama pull gpt-oss:20b
+ollama serve
+streamlit run src/app.py
 ```
+
+Para usar outro modelo já instalado:
+
+```bash
+OLLAMA_MODEL=nome-do-modelo streamlit run src/app.py
+```
+
+No PowerShell:
+
+```powershell
+$env:OLLAMA_MODEL = "nome-do-modelo"
+streamlit run src/app.py
+```
+
+Não são necessárias chaves de API. O Ollama e o modelo rodam localmente.

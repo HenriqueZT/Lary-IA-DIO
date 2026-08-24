@@ -10,3 +10,10 @@ Thumbs.db
 # Logs e temporários
 *.log
 .tmp/
+
+# Python e ambiente local
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
